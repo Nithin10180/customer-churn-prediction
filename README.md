@@ -1,6 +1,3 @@
-
-# Customer Churn Prediction System
-
 # Customer Churn Prediction & Retention Analytics
 
 An end-to-end Machine Learning project for predicting customer churn, identifying high-risk customers, and supporting customer retention decisions.

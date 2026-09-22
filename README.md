@@ -295,5 +295,28 @@ The models were compared based on their forecasting errors.
 
 The evaluation results are stored in:
 
+
+# Demand Forecasting
+
+The trained Machine Learning model predicts future product-family sales using historical demand patterns and engineered time-series features.
+
+Forecast Horizon
+
+The system generates:
+
+7-day future demand forecasts
+
+Forecast Output
+
+The forecast output contains:
+
+Date
+Product family
+Predicted sales
+
+The generated forecasts are stored in:
+
+outputs/future_demand_forecasts.csv
+
 ```text
 outputs/model_metrics.csv

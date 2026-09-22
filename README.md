@@ -1,784 +1,299 @@
-# Customer Churn Prediction & Retention Analytics
+# Retail Demand Forecasting & Inventory Optimization
 
-An end-to-end **Machine Learning project** for predicting customer churn, identifying high-risk customers, and supporting customer retention decisions using **Python, Machine Learning, Power BI, Streamlit, FastAPI, and Docker**.
+An end-to-end **Machine Learning project** for forecasting future retail demand and supporting inventory planning using **Python, SQL, XGBoost, Streamlit, FastAPI, Docker, and Cloud Deployment**.
+
+---
+
+# Live Project
+
+## Live Streamlit Dashboard
+
+👉 [Open Live Dashboard](https://nithin-demand-forecasting-2026.streamlit.app)
+
+Interactive dashboard for selecting a product family and viewing demand forecasts, safety stock, recommended inventory, demand risk, and future demand visualization.
+
+## Live FastAPI Backend
+
+👉 [Open FastAPI](https://nithin-retail-demand-api.onrender.com)
+
+REST API for generating future demand forecasts and inventory recommendations.
+
+## Swagger API Documentation
+
+👉 [Open Swagger Documentation](https://nithin-retail-demand-api.onrender.com/docs)
+
+Interactive API documentation for testing the forecasting endpoints.
+
+## GitHub Repository
+
+👉 [View GitHub Repository](https://github.com/Nithin10180/Retail-demand-forecasting)
 
 ---
 
 # Project Overview
 
-Customer churn is a major challenge for subscription-based businesses. Losing customers directly affects revenue and long-term business growth.
+Retail businesses need to maintain sufficient inventory to satisfy customer demand while avoiding unnecessary overstocking.
 
-The objective of this project is to build an **end-to-end Customer Churn Prediction System** that can:
+Future demand can be difficult to estimate because sales are affected by:
 
-- Predict whether a customer is likely to churn
-- Estimate customer churn risk
-- Identify high-risk customers
-- Analyze major patterns associated with churn
-- Support customer retention decisions
-- Provide an interactive prediction interface
-- Expose the trained model through a REST API
+- Historical sales patterns
+- Seasonality
+- Promotions
+- Holidays
+- Store-level differences
+- Product-family behavior
+- External factors
+
+The objective of this project is to build an **end-to-end Retail Demand Forecasting and Inventory Optimization System** that can:
+
+- Analyze historical retail sales
+- Identify demand patterns
+- Perform SQL-based data analysis
+- Create time-series forecasting features
+- Train Machine Learning models
+- Forecast future product demand
+- Generate 7-day demand forecasts
+- Calculate safety stock
+- Recommend inventory levels
+- Identify demand risk
+- Provide an interactive dashboard
+- Expose predictions through a REST API
 - Containerize the API using Docker
-- Present business insights through Power BI
-
-The project follows an end-to-end workflow from **data analysis and model development to application deployment and business analytics**.
+- Deploy the applications to the cloud
 
 ---
 
 # Problem Statement
 
-Businesses collect large amounts of customer data but often struggle to identify which customers are likely to leave.
+Retailers need to determine how much inventory should be available for upcoming periods.
 
-The goal of this project is to develop a **Machine Learning-based churn prediction system** that identifies customers who are at risk of leaving.
+Ordering too little inventory can result in:
 
-The predicted churn risk can then be used to prioritize customers for **retention strategies and business interventions**.
+- Stock-outs
+- Lost sales
+- Poor customer experience
+
+Ordering too much inventory can result in:
+
+- Excess inventory
+- Higher storage costs
+- Increased operational costs
+
+Retailers therefore need a reliable way to estimate future demand before making inventory decisions.
+
+The objective of this project is to:
+
+**Predict future product demand from historical sales patterns and use those predictions to support better inventory planning.**
 
 ---
 
 # Project Objectives
 
-- Perform Exploratory Data Analysis on customer data
-- Understand customer churn patterns
-- Clean and preprocess the dataset
-- Handle numerical and categorical features
-- Build Machine Learning classification models
-- Compare Logistic Regression and Random Forest
-- Evaluate model performance
-- Save the trained Machine Learning model
-- Build an interactive Streamlit application
-- Build a FastAPI REST API
-- Containerize the API using Docker
-- Create a Power BI customer churn dashboard
-- Identify high-risk customers
-- Analyze revenue at risk
-- Generate retention-oriented insights
+- Forecast future retail demand for individual product families
+- Analyze historical sales patterns and trends
+- Perform SQL-based data preparation and analysis
+- Perform Exploratory Data Analysis
+- Analyze time-series demand patterns
+- Create lag-based forecasting features
+- Create rolling-window features
+- Compare multiple Machine Learning models
+- Generate 7-day future demand forecasts
+- Calculate safety stock
+- Calculate recommended inventory levels
+- Identify demand risk
+- Build an interactive Streamlit dashboard
+- Develop a FastAPI REST API
+- Containerize the backend using Docker
+- Deploy the forecasting application to the cloud
 
 ---
 
 # Dataset
 
-The project uses customer-level telecommunications data containing information about:
+The project uses historical retail sales data containing information about:
 
-- Customer demographics
-- Customer tenure
-- Phone services
-- Internet services
-- Online services
-- Contract information
-- Billing information
-- Payment methods
-- Customer churn
+- Sales date
+- Store number
+- Product family
+- Daily sales
+- Promotion information
+
+Additional supporting information was used for the analytical workflow, including:
+
+- Store transactions
+- Holiday information
+- Oil price information
 
 ## Dataset Features
 
 | Category | Features |
 |---|---|
-| **Customer Information** | customerID, gender, SeniorCitizen |
-| **Demographics** | Partner, Dependents |
-| **Account Information** | tenure |
-| **Phone Services** | PhoneService, MultipleLines |
-| **Internet Services** | InternetService |
-| **Online Services** | OnlineSecurity, OnlineBackup, DeviceProtection, TechSupport |
-| **Streaming Services** | StreamingTV, StreamingMovies |
-| **Contract Information** | Contract |
-| **Billing Information** | PaperlessBilling, MonthlyCharges, TotalCharges |
-| **Payment Information** | PaymentMethod |
-| **Target Variable** | Churn |
+| Date Information | `date` |
+| Store Information | `store_nbr` |
+| Product Information | `family` |
+| Sales Information | `sales` |
+| Promotion Information | `onpromotion` |
+
+## Dataset Coverage
+
+- **Date Range:** 2013-01-01 to 2017-08-15
+- **Stores:** 54
+- **Product Families:** 33
+- **Total Historical Sales:** 1,073,645,177.20
+
+## Major Product Families
+
+Some of the major product families analyzed include:
+
+- GROCERY I
+- BEVERAGES
+- PRODUCE
+- CLEANING
+- DAIRY
+
+---
+
+# SQL Data Processing
+
+SQL was used to prepare and analyze the retail sales data before applying Machine Learning.
+
+The SQL workflow includes:
+
+- Daily sales aggregation
+- Weekly sales analysis
+- Product-family analysis
+- Store-level analysis
+- Date-based analysis
+- Sales trend analysis
+- Promotion-related analysis
+
+SQL was used as the data preparation and business analysis layer of the forecasting pipeline.
 
 ---
 
 # Exploratory Data Analysis
 
-Exploratory Data Analysis was performed to understand the structure and behavior of the customer dataset.
+Exploratory Data Analysis was performed to understand the structure and behavior of the historical retail sales data.
 
 ## Analysis Performed
 
-- Customer churn distribution
-- Customer tenure analysis
-- Monthly charges analysis
-- Total charges analysis
-- Contract analysis
-- Payment method analysis
-- Internet service analysis
-- Customer service subscriptions
-- Demographic analysis
-- Churn patterns across customer segments
+- Daily sales trends
+- Monthly sales trends
+- Product-family sales
+- Store-level sales
+- Promotion impact
+- Seasonal patterns
+- Sales distribution
+- Demand variation
+- Product-family demand behavior
 
 ## Visualization
 
-The project uses visualizations to identify relationships between customer characteristics and churn.
+The project uses visualizations to identify important demand patterns.
 
 Tools used:
 
 - **Matplotlib**
 - **Seaborn**
-- **Power BI**
+- **Pandas**
 
 ---
 
-# Data Preprocessing
+# Time-Series Analysis
 
-The dataset contains both numerical and categorical variables.
+Retail demand is strongly dependent on time.
 
-## Numerical Features
+The project therefore considers the chronological relationship between historical observations and future demand.
 
-- `SeniorCitizen`
-- `tenure`
-- `MonthlyCharges`
-- `TotalCharges`
+Important temporal patterns include:
 
-## Categorical Features
+- Previous-day demand
+- Weekly demand patterns
+- Monthly demand patterns
+- Seasonal behavior
+- Promotion effects
+- Holiday effects
 
-- `gender`
-- `Partner`
-- `Dependents`
-- `PhoneService`
-- `MultipleLines`
-- `InternetService`
-- `OnlineSecurity`
-- `OnlineBackup`
-- `DeviceProtection`
-- `TechSupport`
-- `StreamingTV`
-- `StreamingMovies`
-- `Contract`
-- `PaperlessBilling`
-- `PaymentMethod`
-- `customerID`
+The dataset was split chronologically rather than randomly to preserve the time-series structure.
 
-Categorical variables were converted into machine-readable numerical representations using **One-Hot Encoding**.
+---
 
-A **Scikit-learn Pipeline** and **ColumnTransformer** were used to ensure that preprocessing and model prediction remain consistent.
+# Feature Engineering
+
+Time-series and business-related features were created to improve demand forecasting.
+
+## Calendar Features
+
+- `day_of_week`
+- `day_of_month`
+- `week_of_year`
+- `month`
+- `year`
+
+## Lag Features
+
+- `lag_1`
+- `lag_7`
+- `lag_14`
+- `lag_28`
+
+Lag features allow the model to learn from previous demand observations.
+
+## Rolling Features
+
+- `rolling_mean_7`
+- `rolling_mean_14`
+- `rolling_mean_28`
+
+Rolling features help capture short-term and medium-term demand trends.
+
+## Additional Features
+
+- Promotion count
+- Oil price
+- Holiday indicator
 
 ---
 
 # Machine Learning
 
-Two classification models were developed and evaluated.
+Multiple Machine Learning models were explored for demand forecasting.
 
-## Logistic Regression
+## Linear Regression
 
-**Logistic Regression** was implemented as a baseline classification model.
+**Linear Regression** was implemented as a baseline regression model.
 
-The model was combined with the preprocessing pipeline so that numerical and categorical features could be processed automatically before prediction.
+It provides a simple benchmark for comparing more advanced forecasting models.
 
 ## Random Forest
 
-**Random Forest Classifier** was implemented as the main tree-based Machine Learning model.
+**Random Forest Regressor** was implemented as a tree-based Machine Learning model.
 
-The Random Forest model was configured with:
+It can capture nonlinear relationships between demand and the engineered forecasting features.
 
-- **200 decision trees**
-- **Balanced class weights**
+## XGBoost
 
-Balanced class weighting was used to improve the model's ability to learn from the churn class.
+**XGBoost Regressor** was used as the final forecasting model.
+
+XGBoost is well suited for learning nonlinear relationships between historical demand, time-based features, promotions, and other business variables.
 
 ---
 
 # Model Evaluation
 
-The Machine Learning models were evaluated using multiple metrics.
+The forecasting models were evaluated using standard regression metrics.
 
 ## Evaluation Metrics
 
-- **Accuracy**
-- **ROC-AUC**
-- **Confusion Matrix**
+- **MAE**
+- **MSE**
+- **RMSE**
 
-## Confusion Matrix
+## Model Comparison
 
-The confusion matrix was used to analyze:
+The models were compared based on their forecasting errors.
 
-- **True Positives**
-- **True Negatives**
-- **False Positives**
-- **False Negatives**
-
-This is particularly important for churn prediction because incorrectly classifying a customer who is actually going to churn may result in a missed retention opportunity.
-
----
-
-# Model Persistence
-
-After training, the trained Machine Learning model was saved using **Joblib**.
+The evaluation results are stored in:
 
 ```text
-customer_churn_model.pkl
-```
-
-The saved model is used by both the **Streamlit application** and the **FastAPI backend**.
-
-This allows predictions to be made without retraining the model every time the application starts.
-
----
-
-# Power BI Customer Churn & Retention Analytics
-
-A **Power BI dashboard** was developed to convert Machine Learning predictions into business-oriented insights.
-
-## Dashboard Analysis
-
-The dashboard focuses on:
-
-- Customer churn risk
-- Actual churn
-- Predicted churn probability
-- High-risk customers
-- Medium-risk customers
-- Low-risk customers
-- Contract-level churn
-- Payment-method analysis
-- Internet-service analysis
-- Revenue at risk
-- Customer-level risk prioritization
-- Retention recommendations
-
----
-
-# Business Insights
-
-The Power BI analysis revealed several important customer churn patterns.
-
-## Customer Risk Distribution
-
-The analyzed customer data contains:
-
-- **Customers analyzed:** 1,409
-- **Actual churned customers:** 374
-- **Actual churn rate:** 26.54%
-- **Average churn probability:** 26.76%
-- **High-risk customers:** 91
-- **Medium-risk customers:** 347
-- **Low-risk customers:** 971
-
----
-
-## Contract Analysis
-
-Customers with **Month-to-month contracts** showed the highest churn risk.
-
-### Month-to-month Customers
-
-- Actual churn rate: **42.6%**
-- Predicted churn probability: approximately **43.0%**
-
-Customers with longer-term contracts showed significantly lower churn rates.
-
-This suggests that encouraging customers to move toward longer-term contracts could be considered as part of a retention strategy.
-
----
-
-## Payment Method Analysis
-
-Customers using **Electronic Check** showed the highest actual churn rate.
-
-- Electronic Check churn rate: **43.5%**
-
-This makes the electronic-check customer segment an important area for further retention analysis.
-
----
-
-## Internet Service Analysis
-
-Customers using **Fiber Optic** internet service showed the highest predicted churn probability among the analyzed internet-service categories.
-
-- Fiber Optic predicted churn probability: approximately **43.0%**
-
----
-
-# Customer Risk Prioritization
-
-The project goes beyond simple churn classification.
-
-Customers are categorized into three risk levels:
-
-### High Risk
-
-Customers with a high probability of churn who should receive immediate attention.
-
-### Medium Risk
-
-Customers showing moderate churn risk who should be monitored and targeted with suitable retention strategies.
-
-### Low Risk
-
-Customers with relatively low churn probability who require normal customer engagement.
-
----
-
-# Revenue at Risk
-
-The dashboard also connects churn probability with financial impact.
-
-The high-risk customer segment contains approximately:
-
-```text
-91 high-risk customers
-```
-
-with approximately:
-
-```text
-7,654.55
-```
-
-in associated monthly revenue.
-
-This allows businesses to prioritize customers based not only on churn probability but also on their potential financial impact.
-
----
-
-# Retention Strategy
-
-The overall business workflow can be represented as:
-
-```text
-Customer Data
-      ↓
-Data Preprocessing
-      ↓
-Machine Learning Model
-      ↓
-Churn Prediction
-      ↓
-Risk Classification
-      ↓
-High-Risk Customer Identification
-      ↓
-Revenue-at-Risk Analysis
-      ↓
-Retention Recommendation
-```
-
-This provides a practical connection between **Machine Learning predictions and business decision-making**.
-
----
-
-# Streamlit Application
-
-An interactive **Streamlit web application** was developed for real-time customer churn prediction.
-
-## Customer Inputs
-
-The application accepts:
-
-- Customer ID
-- Gender
-- Senior Citizen
-- Partner
-- Dependents
-- Tenure
-- Phone Service
-- Multiple Lines
-- Internet Service
-- Online Security
-- Online Backup
-- Device Protection
-- Tech Support
-- Streaming TV
-- Streaming Movies
-- Contract
-- Paperless Billing
-- Payment Method
-- Monthly Charges
-- Total Charges
-
-## Prediction
-
-After entering customer information, the trained Machine Learning model predicts the customer's churn status.
-
-### Possible Results
-
-```text
-Customer is likely to churn
-```
-
-or
-
-```text
-Customer is unlikely to churn
-```
-
----
-
-# FastAPI REST API
-
-A **FastAPI REST API** was developed to expose the trained Machine Learning model.
-
-## API Endpoints
-
-### Home Endpoint
-
-```text
-GET /
-```
-
-Used to verify that the API is running.
-
-### Prediction Endpoint
-
-```text
-POST /predict
-```
-
-The endpoint accepts customer information and returns a churn prediction.
-
-## Example Response
-
-```json
-{
-    "prediction": 0,
-    "result": "Customer is unlikely to churn"
-}
-```
-
-### Prediction Values
-
-```text
-0 = Customer is unlikely to churn
-1 = Customer is likely to churn
-```
-
----
-
-# Swagger API Documentation
-
-FastAPI automatically provides interactive API documentation.
-
-After starting the API, open:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-The Swagger interface can be used to test the `/predict` endpoint directly.
-
----
-
-# Docker
-
-The FastAPI application was containerized using **Docker**.
-
-## Docker Configuration
-
-The Docker setup:
-
-- Uses Python 3.11
-- Creates an application working directory
-- Copies the trained model
-- Copies the FastAPI application
-- Installs required dependencies
-- Exposes port 8000
-- Runs the API using Uvicorn
-
-## Dockerfile
-
-```dockerfile
-FROM python:3.11-slim
-
-WORKDIR /app
-
-COPY customer_churn_model.pkl .
-COPY api.py .
-
-RUN pip install --no-cache-dir fastapi uvicorn pandas scikit-learn joblib
-
-EXPOSE 8000
-
-CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
----
-
-# Project Architecture
-
-```text
-                         Customer Dataset
-                                |
-                                ↓
-                       Data Preprocessing
-                                |
-                                ↓
-                              EDA
-                                |
-                                ↓
-                    Feature Transformation
-                                |
-                                ↓
-                       Machine Learning
-                                |
-                    +-----------+-----------+
-                    |                       |
-                    ↓                       ↓
-             Logistic Regression      Random Forest
-                    |                       |
-                    +-----------+-----------+
-                                |
-                                ↓
-                         Model Evaluation
-                                |
-                                ↓
-                    Saved ML Model (.pkl)
-                                |
-                    +-----------+-----------+
-                    |                       |
-                    ↓                       ↓
-               Streamlit                 FastAPI
-                Web App                 REST API
-                                            |
-                                            ↓
-                                         Docker
-
-                                |
-                                ↓
-                              Power BI
-                                |
-                                ↓
-                    Churn & Retention Analytics
-                                |
-                                ↓
-                  Risk Prioritization & Insights
-```
-
----
-
-# Project Structure
-
-```text
-customer-churn-prediction/
-│
-├── api.py
-├── app.py
-├── customer_churn_model.pkl
-├── Dockerfile
-├── requirements.txt
-├── README.md
-├── LICENSE
-└── .gitignore
-```
-
----
-
-# Technologies Used
-
-## Programming Language
-
-**Python**
-
-## Data Analysis
-
-- **Pandas**
-- **NumPy**
-- **Matplotlib**
-- **Seaborn**
-
-## Machine Learning
-
-- **Scikit-learn**
-- **Logistic Regression**
-- **Random Forest**
-- **ColumnTransformer**
-- **OneHotEncoder**
-
-## Application Development
-
-- **Streamlit**
-- **FastAPI**
-- **Uvicorn**
-
-## Deployment & DevOps
-
-- **Docker**
-- **Git**
-- **GitHub**
-
-## Business Intelligence
-
-- **Power BI**
-
-## Model Persistence
-
-- **Joblib**
-
----
-
-# Installation
-
-## Clone the Repository
-
-```bash
-git clone https://github.com/Nithin10180/customer-churn-prediction.git
-```
-
-## Navigate to the Project Directory
-
-```bash
-cd customer-churn-prediction
-```
-
-## Create a Virtual Environment
-
-```bash
-python -m venv venv
-```
-
-## Activate Virtual Environment on Windows
-
-```bash
-venv\Scripts\activate
-```
-
-## Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-# Run Streamlit Application
-
-Run the following command:
-
-```bash
-streamlit run app.py
-```
-
-The Streamlit application will open in your browser.
-
----
-
-# Run FastAPI
-
-Start the FastAPI server:
-
-```bash
-uvicorn api:app --host 0.0.0.0 --port 8000
-```
-
-The API will be available at:
-
-```text
-http://127.0.0.1:8000
-```
-
-Swagger documentation:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
----
-
-# Run with Docker
-
-## Build Docker Image
-
-```bash
-docker build -t customer-churn-api .
-```
-
-## Run Docker Container
-
-```bash
-docker run -p 8000:8000 customer-churn-api
-```
-
-The API will be available at:
-
-```text
-http://localhost:8000
-```
-
----
-
-# Key Features
-
-- **End-to-end Machine Learning workflow**
-- **Customer churn prediction**
-- **Numerical and categorical feature preprocessing**
-- **Logistic Regression baseline**
-- **Random Forest classification**
-- **Class imbalance handling**
-- **Model evaluation**
-- **Saved trained Machine Learning model**
-- **Interactive Streamlit application**
-- **FastAPI REST API**
-- **Swagger API documentation**
-- **Docker containerization**
-- **Power BI business dashboard**
-- **Customer risk classification**
-- **High-risk customer identification**
-- **Revenue-at-risk analysis**
-- **Retention recommendations**
-
----
-
-# Business Value
-
-The system helps businesses move from **reactive customer management to proactive customer retention**.
-
-Instead of manually analyzing every customer, businesses can use predicted churn probabilities to prioritize customers who require attention.
-
-## Business Workflow
-
-```text
-Customer Data
-      ↓
-Churn Prediction
-      ↓
-Risk Classification
-      ↓
-High-Risk Customer Identification
-      ↓
-Revenue-at-Risk Analysis
-      ↓
-Retention Recommendation
-```
-
-This creates a practical connection between **Machine Learning, business intelligence, and customer retention**.
-
----
-
-# Future Improvements
-
-The project can be further improved by adding:
-
-- **SHAP-based model explainability**
-- **Hyperparameter tuning**
-- **Automated retention recommendation engine**
-- **Probability-based risk thresholds**
-- **Customer segmentation**
-- **Database integration**
-- **Cloud deployment**
-- **CI/CD automation**
-- **Model monitoring**
-- **Automated model retraining**
-- **Production-scale data pipelines**
-
----
-
-# License
-
-This project is licensed under the **MIT License**.
-
-See the [`LICENSE`](LICENSE) file for more information.
-
----
-
-# Author
-
-## Nithin Thokkala
-
-**Machine Learning | Data Science | Python | SQL**
-
-GitHub: **[Nithin10180](https://github.com/Nithin10180)**
-
----
-
-# Done by Nithin
-
-**Nithin Thokkala**
-
-**Customer Churn Prediction & Retention Analytics System**
-
-**Machine Learning • Power BI • Streamlit • FastAPI • Docker • GitHub**
+outputs/model_metrics.csv

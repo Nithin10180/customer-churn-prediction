@@ -293,7 +293,7 @@ The forecasting models were evaluated using standard regression metrics.
 
 The models were compared based on their forecasting errors.
 
-The evaluation results are stored in:
+The evaluation results are stored in: ```text outputs/model_metrics.csv
 
 
 # Demand Forecasting
@@ -316,7 +316,65 @@ Predicted sales
 
 The generated forecasts are stored in:
 
-outputs/future_demand_forecasts.csv
+outputs/future_demand_forecasts.csv 
+ ,```text outputs/model_metrics.csv
 
-```text
-outputs/model_metrics.csv
+
+# Inventory Optimization
+
+The predicted demand is used to support inventory planning.
+
+The system calculates recommended inventory using predicted future demand and safety stock.
+
+Inventory Formula
+Recommended Stock =
+Predicted 7-Day Demand + Safety Stock
+Inventory Components
+Predicted Demand
+
+Expected product demand for the upcoming 7-day period.
+
+# Safety Stock
+
+Additional inventory maintained to handle demand uncertainty.
+
+## Recommended Stock
+
+The suggested inventory level based on predicted demand and safety stock.
+
+## Demand Risk
+
+The system categorizes demand into:
+
+High Demand
+Normal
+Low Demand
+Safety Stock
+
+Safety stock provides additional inventory protection against demand variability.
+
+The calculated safety stock is incorporated into the inventory recommendation.
+
+The inventory recommendations are stored in:
+
+outputs/inventory_recommendations.csv
+
+# Streamlit Application
+
+An interactive Streamlit web application was developed for exploring demand forecasts and inventory recommendations.
+
+## Dashboard Features
+
+Users can:
+
+Select a product family
+View forecasted demand
+View recommended stock
+View safety stock
+View demand risk
+View future demand trends
+View daily forecast values
+View inventory recommendations
+Live Dashboard
+
+👉 Open Live Streamlit Dashboard

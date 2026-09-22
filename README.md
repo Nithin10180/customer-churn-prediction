@@ -377,4 +377,456 @@ View daily forecast values
 View inventory recommendations
 Live Dashboard
 
-👉 Open Live Streamlit Dashboard
+👉 Open Live Streamlit Dashboard : https://nithin-demand-forecasting-2026.streamlit.app
+
+# FastAPI REST API
+
+A FastAPI REST API was developed to expose the trained Machine Learning forecasting system.
+
+## API Endpoints
+## Home Endpoint
+GET /
+
+Used to verify that the API is running.
+
+## Product Family Endpoint
+GET /families
+
+Returns the available product families.
+
+## Forecast Endpoint
+POST /forecast
+
+Generates a future demand forecast for a selected product family.
+
+Example Request
+{
+    "family": "AUTOMOTIVE"
+}
+Example Response
+{
+    "family": "AUTOMOTIVE",
+    "forecasted_7_day_demand": 1679.96,
+    "daily_forecast": [
+        {
+            "date": "2017-08-16",
+            "predicted_sales": 293.06
+        },
+        {
+            "date": "2017-08-17",
+            "predicted_sales": 232.48
+        },
+        {
+            "date": "2017-08-18",
+            "predicted_sales": 253.95
+        }
+    ],
+    "recommended_stock": 2154.17,
+    "safety_stock": 474.21,
+    "demand_risk": "Low Demand"
+}
+
+# Swagger API Documentation
+
+FastAPI automatically provides interactive API documentation.
+
+The Swagger documentation can be used to test the forecasting API.
+
+👉 Open Swagger Documentation : https://nithin-retail-demand-api.onrender.com/docs
+
+# Docker
+
+The FastAPI backend was containerized using Docker.
+
+## Docker Configuration
+
+The Docker setup:
+
+Uses a Python runtime
+Creates an application working directory
+Copies the application files
+Installs required dependencies
+Exposes the API port
+Runs the FastAPI application using Uvicorn
+Dockerfile
+
+## The project contains:
+
+## Dockerfile
+
+Docker provides a consistent environment for running and deploying the backend application.
+
+## Cloud Deployment
+
+The project was deployed using cloud platforms.
+
+## Streamlit Cloud
+
+The Streamlit dashboard is deployed using Streamlit Cloud.
+
+👉 Open Live Dashboard : https://nithin-demand-forecasting-2026.streamlit.app
+
+## Render
+
+The FastAPI backend is deployed using Render.
+
+👉 Open FastAPI Backend : https://nithin-retail-demand-api.onrender.com/
+
+# Project Architecture
+
+                         Retail Sales Dataset
+                                  |
+                                  ↓
+                         SQL Data Processing
+                                  |
+                                  ↓
+                        Exploratory Data Analysis
+                                  |
+                                  ↓
+                         Time-Series Analysis
+                                  |
+                                  ↓
+                         Feature Engineering
+                                  |
+                                  ↓
+                        Machine Learning Models
+                                  |
+                    +-------------+-------------+
+                    |                           |
+                    ↓                           ↓
+             Linear Regression          Random Forest
+                    |                           |
+                    +-------------+-------------+
+                                  |
+                                  ↓
+                              XGBoost
+                                  |
+                                  ↓
+                         Model Evaluation
+                                  |
+                                  ↓
+                       Future Demand Forecast
+                                  |
+                                  ↓
+                         Inventory Planning
+                    +-------------+-------------+
+                    |             |             |
+                    ↓             ↓             ↓
+              Safety Stock  Recommended Stock  Demand Risk
+                    |             |             |
+                    +-------------+-------------+
+                                  |
+                    +-------------+-------------+
+                    |                           |
+                    ↓                           ↓
+              Streamlit Dashboard          FastAPI REST API
+                    |                           |
+                    ↓                           ↓
+             Streamlit Cloud                  Render
+
+
+# Application Flow
+
+Retail Sales Data
+        ↓
+SQL Data Processing
+        ↓
+Exploratory Data Analysis
+        ↓
+Time-Series Analysis
+        ↓
+Feature Engineering
+        ↓
+Machine Learning Model
+        ↓
+Future Demand Forecast
+        ↓
+Inventory Planning
+        ↓
+Safety Stock
+        ↓
+Recommended Stock
+        ↓
+Demand Risk
+        ↓
+Streamlit Dashboard
+        ↓
+FastAPI REST API
+
+# Project Structure
+
+Retail-demand-forecasting/
+│
+├── data/
+│
+├── models/
+│
+├── outputs/
+│
+├── screenshots/
+│
+├── sql/
+│
+├── api.py
+├── app.py
+├── Dockerfile
+├── requirements.txt
+├── README.md
+│
+└── Retail_Demand_Forecasting_&_Inventory_Optimization.ipynb
+
+
+# Output Files
+
+The project generates multiple outputs used throughout the forecasting and inventory workflow.
+
+outputs/
+│
+├── future_demand_forecasts.csv
+├── model_metrics.csv
+├── inventory_recommendations.csv
+├── forecast_model_feature_importance.csv
+└── retail_forecasting_predictions.csv
+Future Demand Forecasts
+outputs/future_demand_forecasts.csv
+
+Contains future predicted sales for product families.
+
+## Model Metrics
+outputs/model_metrics.csv
+
+Contains model evaluation results.
+
+## Inventory Recommendations
+outputs/inventory_recommendations.csv
+
+Contains recommended stock, safety stock, and demand risk information.
+
+# Jupyter Notebook
+
+The complete Machine Learning workflow is available in the Jupyter Notebook.
+
+The notebook contains:
+
+## Data loading
+Data preprocessing
+SQL analysis
+Exploratory Data Analysis
+Time-series analysis
+Feature engineering
+Model training
+Model evaluation
+Demand forecasting
+Inventory recommendation
+Notebook
+Retail_Demand_Forecasting_&_Inventory_Optimization.ipynb
+Screenshots
+
+## Project screenshots are available in:
+
+screenshots/
+
+The screenshots demonstrate:
+
+Streamlit dashboard
+Demand forecasting
+Inventory recommendation
+FastAPI backend
+Swagger documentation
+Forecast outputs
+Technologies Used
+Programming Language
+Python
+SQL
+Data Analysis
+Pandas
+NumPy
+Data Visualization
+Matplotlib
+Seaborn
+Machine Learning
+Scikit-learn
+XGBoost
+Linear Regression
+Random Forest Regressor
+Application Development
+Streamlit
+FastAPI
+Uvicorn
+Deployment & DevOps
+Docker
+Streamlit Cloud
+Render
+Git
+GitHub
+Development Environment
+Jupyter Notebook
+Google Colab
+VS Code
+Installation
+Clone the Repository
+git clone https://github.com/Nithin10180/Retail-demand-forecasting.git
+Navigate to the Project Directory
+cd Retail-demand-forecasting
+Create a Virtual Environment
+python -m venv venv
+Activate Virtual Environment on Windows
+venv\Scripts\activate
+Install Dependencies
+pip install -r requirements.txt
+Run Streamlit Application
+
+Run the following command:
+
+streamlit run app.py
+
+The Streamlit dashboard will open in your browser.
+
+Run FastAPI
+
+Start the FastAPI server using:
+
+uvicorn api:app --host 0.0.0.0 --port 8000
+
+## The API will be available at:
+
+http://127.0.0.1:8000
+
+## Swagger documentation:
+
+http://127.0.0.1:8000/docs
+Run with Docker
+Build Docker Image
+docker build -t retail-demand-api .
+Run Docker Container
+docker run -p 8000:8000 retail-demand-api
+
+## The API will then be available at:
+
+http://localhost:8000
+Key Features
+End-to-end Machine Learning workflow
+Retail demand forecasting
+SQL-based data processing
+Time-series analysis
+Lag feature engineering
+Rolling-window feature engineering
+Multiple Machine Learning models
+XGBoost forecasting
+7-day future demand prediction
+Safety stock calculation
+Recommended inventory calculation
+Demand risk identification
+Interactive Streamlit dashboard
+FastAPI REST API
+Swagger API documentation
+Docker containerization
+Cloud deployment
+Business Value
+
+This project demonstrates how Machine Learning can support retail inventory planning.
+
+## The system can help businesses:
+
+Estimate future product demand
+Reduce the risk of stock-outs
+Reduce unnecessary overstocking
+Understand product-family demand
+Support inventory planning
+Automate demand forecasting
+Identify demand risk
+Expose ML predictions through an API
+Future Improvements
+
+## The project can be further improved by adding:
+
+LSTM-based demand forecasting
+SARIMA-based forecasting
+Automated model retraining
+Real-time inventory updates
+Store-specific forecasting
+Product-level forecasting
+Advanced demand uncertainty estimation
+Automated stock-out alerts
+Real-time database integration
+ML model monitoring
+Automated forecasting pipelines
+What This Project Demonstrates
+
+## This project demonstrates practical experience in:
+
+Machine Learning
+Time-Series Forecasting
+Feature Engineering
+SQL
+Data Analysis
+Data Visualization
+Inventory Analytics
+Model Evaluation
+REST API Development
+Streamlit Application Development
+Docker
+Cloud Deployment
+End-to-End ML Engineering
+Learning Outcomes
+
+## Through this project, I gained practical experience in:
+
+Working with retail sales datasets
+Preparing and analyzing data using SQL
+Understanding time-series demand patterns
+Creating lag and rolling features
+Training Machine Learning forecasting models
+Evaluating regression models
+Connecting ML predictions with business decisions
+Building interactive ML applications
+Developing production-style APIs
+Containerizing applications using Docker
+Deploying Machine Learning applications to the cloud
+
+# Author
+## Nithin Thokkala
+
+## Machine Learning | Data Science | Python | SQL
+
+## Interested in:
+
+Machine Learning
+Data Science
+Artificial Intelligence
+Generative AI
+LLMs
+RAG Systems
+
+## GitHub: Nithin10180
+
+License
+
+This project is available for educational and portfolio purposes.
+
+# Project Links
+## Live Dashboard
+
+👉 Streamlit Dashboard : https://nithin-demand-forecasting-2026.streamlit.app/
+
+## FastAPI 
+
+👉 FastAPI Backend : https://nithin-retail-demand-api.onrender.com
+
+## Swagger
+
+👉 Swagger Documentation : : https://nithin-retail-demand-api.onrender.com/docs
+
+## GitHub
+
+👉 GitHub Repository : https://github.com/Nithin10180/Retail-demand-forecasting
+
+Done by Nithin
+
+Nithin Thokkala
+
+Retail Demand Forecasting & Inventory Optimization
+
+Machine Learning • SQL • XGBoost • Streamlit • FastAPI • Docker • Cloud Deployment
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

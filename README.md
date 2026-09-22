@@ -803,12 +803,12 @@ Developing production-style APIs
 Containerizing applications using Docker
 Deploying Machine Learning applications to the cloud
 
-# Author
-## Nithin Thokkala
+## Author
+### Nithin Thokkala
 
-## Machine Learning | Data Science | Python | SQL
+#### Machine Learning | Data Science | Python | SQL
 
-## Interested in:
+### Interested in:
 
 Machine Learning
 Data Science
@@ -817,7 +817,7 @@ Generative AI
 LLMs
 RAG Systems
 
-## GitHub: Nithin10180
+### GitHub: Nithin10180
 
 License
 

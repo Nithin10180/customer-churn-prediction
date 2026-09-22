@@ -28,6 +28,25 @@ Interactive API documentation for testing the forecasting endpoints.
 
 👉 [View GitHub Repository](https://github.com/Nithin10180/Retail-demand-forecasting)
 
+
+# Project Links
+## Live Dashboard
+
+👉 Streamlit Dashboard : https://nithin-demand-forecasting-2026.streamlit.app/
+
+## FastAPI 
+
+👉 FastAPI Backend : https://nithin-retail-demand-api.onrender.com
+
+## Swagger
+
+👉 Swagger Documentation : : https://nithin-retail-demand-api.onrender.com/docs
+
+## GitHub
+
+👉 GitHub Repository : https://github.com/Nithin10180/Retail-demand-forecasting
+
+
 ---
 
 # Project Overview
@@ -804,29 +823,8 @@ License
 
 This project is available for educational and portfolio purposes.
 
-# Project Links
-## Live Dashboard
+## Retail Demand Forecasting & Inventory Optimization
 
-👉 Streamlit Dashboard : https://nithin-demand-forecasting-2026.streamlit.app/
-
-## FastAPI 
-
-👉 FastAPI Backend : https://nithin-retail-demand-api.onrender.com
-
-## Swagger
-
-👉 Swagger Documentation : : https://nithin-retail-demand-api.onrender.com/docs
-
-## GitHub
-
-👉 GitHub Repository : https://github.com/Nithin10180/Retail-demand-forecasting
-
-Done by Nithin
-
-Nithin Thokkala
-
-Retail Demand Forecasting & Inventory Optimization
-
-Machine Learning • SQL • XGBoost • Streamlit • FastAPI • Docker • Cloud Deployment
+### Machine Learning • SQL • XGBoost • Streamlit • FastAPI • Docker • Cloud Deployment
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
